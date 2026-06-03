@@ -4,7 +4,7 @@ WORKSPACE=./
 trap 'echo "Error: command failed: $BASH_COMMAND"; exit 1' ERR
 conda create -n tranxadapter python=3.10 -y
 conda activate tranxadapter
-pip install -e .
+pip install -r requirements.txt
 cd llavanpr
 pip install -e .
 cd ${WORKSPACE}/qwen3vlnpr
