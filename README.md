@@ -136,7 +136,7 @@ While prior work improves AIGI detection by combining artifact and semantic feat
 
     i.  If you want to train on RRDataset, you need to set the input image resolution to 512x512 (`./ms-swift/swift/llm/template/template/qwen.py line 637` and `./ms-swift/swift/llm/template/templatellava.py line192`).
 
-    ii. We found that if the model is trained directly on GenImage Sdv1.4, the MLLM tends to overfit to the input image resolution. Therefore, we recommend training with real and fake images that have the same resolution. We use the [BiasFree part](https://github.com/grip-unina/B-Free/tree/main/training_data) (SD2.1_selfconditioned_origBG.zip and COCO_real_512.zip) to prevent the model from overfitting to image resolution. We recommend downloading the data from the [official link](https://github.com/grip-unina/B-Free/tree/main/training_data).
+    ii. We found that if the model is trained directly on GenImage Sdv1.4, the MLLM tends to overfit to the input image resolution. Therefore, we recommend training with real and fake images that have the same resolution. We use the [BFree](https://github.com/grip-unina/B-Free/tree/main/training_data) (SD2.1_selfconditioned_origBG.zip and COCO_real_512.zip) to prevent the model from overfitting to image resolution. We recommend downloading the data from the [official link](https://github.com/grip-unina/B-Free/tree/main/training_data).
 
     iii. We found that MLLM training converges quickly and also overfits rapidly. Therefore, we recommend using a checkpoint from the middle of training.
 
