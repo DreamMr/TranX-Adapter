@@ -126,7 +126,7 @@ While prior work improves AIGI detection by combining artifact and semantic feat
 
 2. Start training
    
-    Take training Qwen3Vl-2B on GenImage Sdv1.4 as an example:
+    Take training Qwen3VL-2B on GenImage Sdv1.4 as an example:
 
     ```bash
     cd ms-swift/scripts/training
