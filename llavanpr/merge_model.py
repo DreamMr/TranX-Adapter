@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     # url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
     # image = Image.open(requests.get(url, stream=True).raw)
-    image_path = r'/intern/billwenwang/VLMEvalKit/scripts/real.jpg'
+    image_path = r'../VLMEvalKit/scripts/real.jpg'
     image = Image.open(image_path)
 
     processor = CustomLlavaNextProcessor.from_pretrained(r'llava-hf/llava-v1.6-mistral-7b-hf')
