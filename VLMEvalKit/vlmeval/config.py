@@ -574,7 +574,7 @@ llava_series = {
         LLaVA_Next, model_path="llava-hf/llava-v1.6-vicuna-13b-hf"
     ),
     "llava_next_mistral_7b": partial(
-        LLaVA_Next, model_path="/home/workdir/LVLM/huggingface/llava-v1.6-mistral-7b-hf"
+        LLaVA_Next, model_path="llava-hf/llava-v1.6-mistral-7b-hf"
     ),
     "llava_next_yi_34b": partial(LLaVA_Next, model_path="llava-hf/llava-v1.6-34b-hf"),
     "llava_next_llama3": partial(

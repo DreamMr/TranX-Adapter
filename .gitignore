@@ -1,9 +1,8 @@
-*.md
+
 *.png
 *.jpg
 *.jpeg
 *.tif
-*.txt
 *.pyc
 *.rst
 *.json
@@ -14,5 +13,4 @@
 *.css
 *.html
 *.yaml
-*.sh
 *.js
