@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: qwen3vlnpr
+Version: 0.1.0
+Summary: The TranXAdapter of qwen3vl
+Author: Wenbin Wang
+Author-email: wangwenbin97@whu.edu.cn
+Maintainer: Wenbin Wang
+Maintainer-email: wangwenbin97@whu.edu.cn
+Keywords: AI,CV,AIGC Detection
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Requires-Python: >=3.7.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: keywords
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: requires-python
+Dynamic: summary
