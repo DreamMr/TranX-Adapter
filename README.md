@@ -10,10 +10,10 @@ license: apache-2.0
     <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2602.21716-red?logo=arxiv" height="25" />
 </a>
 <a href="https://huggingface.co/collections/DreamMr/tranxadapter" target="_blank">
-    <img alt="HF Models: TranX-Adapter" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Models-TranXAdapter-ffc107?color=ffc107&logoColor=white" height="25" />
+    <img alt="HF Models: TranX-Adapter" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Models-TranX--Adapter-ffc107?color=ffc107&logoColor=white" height="25" />
 </a>
 <a href="https://huggingface.co/datasets/DreamMr/TranXAdapter-Dataset" target="_blank">
-    <img alt="HF Data: TranXAdapter-Data" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Data-TranXAdapter--Data-3cb371?color=3cb371&logoColor=white" height="25" />
+    <img alt="HF Data: TranXAdapter-Data" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Data-TranX--Adapter Data-3cb371?color=3cb371&logoColor=white" height="25" />
 </a>
 
 <div style="font-family: charter;">
@@ -39,7 +39,7 @@ license: apache-2.0
 
 ## News
 
-[2026.06.06] TranX-Adapter code is available! Additional, we have also open-sourced the [trained models](https://huggingface.co/collections/DreamMr/tranxadapter) along with the corresponding [training and evaluation data](https://huggingface.co/datasets/DreamMr/TranXAdapter-Dataset).
+[2026.06.03] TranX-Adapter code is available! Additionally, we have also open-sourced the [trained models](https://huggingface.co/collections/DreamMr/tranxadapter) along with the corresponding [training and evaluation data](https://huggingface.co/datasets/DreamMr/TranXAdapter-Dataset).
 
 [2026.05.01] Our paper was accepted to ICML 2026! 🎉
 
@@ -52,7 +52,7 @@ While prior work improves AIGI detection by combining artifact and semantic feat
 
 ## 🔧 Installation
 
-1. Clone this repository and navigate to into the codebase
+1. Clone this repository and navigate into the codebase
     ```bash
     git clone https://github.com/DreamMr/TranX-Adapter.git
     cd TranX-Adapter
@@ -69,7 +69,7 @@ While prior work improves AIGI detection by combining artifact and semantic feat
 
 ## 📦 Preparation
 
-1. Download Dataset
+1. Download the datasets
 
     - Training Data: [GenImage](https://genimage-dataset.github.io/), [RRDataset](https://arxiv.org/abs/2509.09172), [BFree](https://github.com/grip-unina/B-Free/tree/main/training_data) (SD2.1_selfconditioned_origBG.zip (ai) and COCO_real_512.zip (real)).
 
@@ -110,22 +110,22 @@ While prior work improves AIGI detection by combining artifact and semantic feat
     │   ├── real
     ```
     
-2. Processing Data
+2. Process Data
 
     Run `python preprocess_data.py` to replace the image paths in JSONL/CSV files with absolute paths.
 
-    **Note: You need to copy the MD5 values corresponding to the CSV filees into  DATASET_MD5 in ./VLMEvalKit/vlmeval/dataset/aigc_detection.py**
+    **Note: You need to copy the MD5 values corresponding to the CSV files into  DATASET_MD5 in ./VLMEvalKit/vlmeval/dataset/aigc_detection.py**
 
 
 ## 🏋️ Training
 
 1. Merge TranX-Adapter into the MLLM
 
-    First, TranX-Adapter needs to be merged into the MLLM so that it can be directly loaded with `from_pretrained()`. We provide merge scripts (`./llavanpr/merge_model.py` & `./qwen3vlnpr/merge_model.py`) as well as the merged models: [DreamMr/TranXAdapter-LLaVA-next-mistral7B-v0](https://huggingface.co/DreamMr/TranXAdapter-LLaVA-next-mistral7B-v0), [DreamMr/TranXAdapter-Qwen3VL2B-v0](https://huggingface.co/DreamMr/TranXAdapter-Qwen3VL2B-v0), [DreamMr/TranXAdapter-Qwen3VL4B-v0](https://huggingface.co/DreamMr/TranXAdapter-Qwen3VL4B-v0)
+    First, TranX-Adapter needs to be merged into the MLLM so that it can be directly loaded with `from_pretrained()`. We provide merge scripts (`./llavanpr/merge_model.py` and `./qwen3vlnpr/merge_model.py`) as well as the merged models: [DreamMr/TranXAdapter-LLaVA-next-mistral7B-v0](https://huggingface.co/DreamMr/TranXAdapter-LLaVA-next-mistral7B-v0), [DreamMr/TranXAdapter-Qwen3VL2B-v0](https://huggingface.co/DreamMr/TranXAdapter-Qwen3VL2B-v0), [DreamMr/TranXAdapter-Qwen3VL4B-v0](https://huggingface.co/DreamMr/TranXAdapter-Qwen3VL4B-v0)
 
 
 2. Start training
-    Taking training Qwen3Vl-2B on GenImage Sdv1.4 as an example:
+    Take training Qwen3Vl-2B on GenImage Sdv1.4 as an example:
 
     ```bash
     cd ms-swift/scripts/training
@@ -134,18 +134,27 @@ While prior work improves AIGI detection by combining artifact and semantic feat
 
     
 
-    i.  If you want to train on RRDataset, you need to set the input image resolution to 512x512 (./ms-swift/swift/llm/template/template/qwen.py line 637 & llava.py line192 ).
+    i.  If you want to train on RRDataset, you need to set the input image resolution to 512x512 (`./ms-swift/swift/llm/template/template/qwen.py line 637` and `./ms-swift/swift/llm/template/templatellava.py line192`).
 
     ii. We found that if the model is trained directly on GenImage Sdv1.4, the MLLM tends to overfit to the input image resolution. Therefore, we recommend training with real and fake images that have the same resolution. We use the [BiasFree part](https://github.com/grip-unina/B-Free/tree/main/training_data) (SD2.1_selfconditioned_origBG.zip and COCO_real_512.zip) to prevent the model from overfitting to image resolution. We recommend downloading the data from the [official link](https://github.com/grip-unina/B-Free/tree/main/training_data).
 
-    iii. We found that MLLM training converges quickly and also overfits rapidly. Therefore, we do not recommend training for too long.
+    iii. We found that MLLM training converges quickly and also overfits rapidly. Therefore, we recommend using a checkpoint from the middle of training.
 
 ## 📈 Evaluation
 
-```bash
-cd VLMEvalKit/scripts
-bash run_task.sh
-```
+1. Modify the LMUData in `./VLMEvalKit/scripts/run_task.sh`
+
+    You need to modify `LMUData` to the absolute path of `Dataset`.
+
+2. Modify `DATASET_URL` and `DATASET_MD5` in `./VLMEvalKit/vlmeval/dataset/aigc_detection.py`.
+
+    Replace `DATASET_URL` with the absolute path of the CSV file, and fill in `DATASET_MD5` with the MD5 value [computed earlier](#📦preparation).
+
+3. Run code
+    ```bash
+    cd VLMEvalKit/scripts
+    bash run_task.sh
+    ```
 
 
 
@@ -160,7 +169,7 @@ If you use TranX-Adapter in your research, please cite our work:
   title={TranX-Adapter: Bridging Artifacts and Semantics within MLLMs for Robust AI-generated Image Detection},
   author={Wang, Wenbin and Huang, Yuge and Xu, Jianqing and Yu, Yue and Yan, Jiangtao and Ding, Shouhong and Zhou, Pan and Luo, Yong},
   booktitle={Forty-third International Conference on Machine Learning},
-  url={https://arxiv.org/abs/2503.01222}
+  url={https://arxiv.org/abs/2602.21716}
 }
 ```
 
